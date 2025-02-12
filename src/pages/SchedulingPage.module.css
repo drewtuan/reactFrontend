@@ -1,0 +1,16 @@
+.header {
+  text-align: center;
+}
+
+h1 {
+  color: white;
+  font-size: 2rem;
+}
+
+.schedulingcontainer {
+  background-image:url("../images/lizard.jpg");
+  background-size:cover;
+  width: 100%;
+  height:150vh;
+  overflow:scroll;
+}

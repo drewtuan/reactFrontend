@@ -1,0 +1,121 @@
+
+form {
+  max-width: 40vw;
+  min-width: 10vw;
+  height: 50%;
+}
+.container {
+  padding: 20px;
+  width: 100%;
+ 
+
+}
+
+
+.subcontainer2 {
+  display: flex; 
+}
+
+.subcontainer3 {
+  width: 50%;
+}
+
+
+.separate_area1 {
+  margin-top: 1vh;
+}
+
+.buttonContainer {
+  display: flex;
+  flex-direction: column;
+ 
+}
+
+.separate_area2 {
+  margin-top: 2vh;
+}
+
+.separate_area3 {
+  margin-top: 2vh;
+}
+
+.separate_area4 {
+  width: 100%;
+  margin-top: 2vh;
+}
+
+#new_appointment_button {
+  border-radius: 15px;
+  background-color:rgb(236, 236, 23);
+}
+
+#viewAppointmentsButton {
+  border: solid;
+  width: 300px;
+  margin: 0 auto;
+
+}
+
+#selectionBox {
+  width: 50%;
+}
+
+
+
+@media only screen and (min-width: 1601px) and (max-width: 1900px) {
+
+ form {
+  height: 55%;
+ }
+ 
+.subcontainer2 {
+  display: block;
+}
+
+
+
+}
+
+@media only screen and (min-width: 950px) and (max-width: 1600px) {
+
+  form {
+   height: 70%;
+  }
+  
+ .subcontainer2 {
+   display: block;
+ }
+ 
+ 
+}
+
+@media only screen and (min-width: 100px) and (max-width: 949px) {
+
+  form {
+   height: 75%;
+  }
+
+  input {
+    width: 100%;
+  }
+  
+ .subcontainer2 {
+   display: block;
+ }
+
+ label {
+  font-size: 0.6em;
+ }
+
+ #dateBox, #selectionBox {
+  font-size: 0.6em;
+ }
+ 
+ 
+}
+ 
+
+
+
+
+

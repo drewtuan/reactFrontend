@@ -1,0 +1,140 @@
+*{
+  font-size: 3vh;
+}
+
+form {
+  background-color: rgba(255,255,255);
+  opacity:0.85;
+  border-radius: 15px;
+  padding: 8vw;
+  width: 50vw;
+  height: 30%;
+  margin:3% auto;
+  max-width: 40vw;
+  min-width: 20vw;
+}
+
+
+
+form .myform_container {
+  display: flex;
+  justify-content:center;
+  flex-direction:column;
+}
+
+form .container2 {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+form .container_component {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2vh;
+}
+
+form .container_component label {
+  width: 30%;
+  font-size: 3vh;
+  margin-right: 4px;
+  text-align: right;
+}
+
+form .container_component input {
+  width: 35%;
+}
+
+form .formButtons {
+  display: flex;
+  justify-content: space-around;
+}
+
+#bottomArea {
+  text-align: center;
+}
+
+#goBackToHomePageButton,#submitButton {
+  border: solid;
+  width: 4em;
+}
+
+@media only screen and (min-width: 1200px) {
+  form {
+    width: 50vw;
+  }
+}
+
+
+@media only screen and (min-width: 476px) and (max-width: 1200px) {
+
+  form {
+    width: 70%;
+  }
+  form .container_component label {
+    width:30%;
+    font-size: 1rem;
+    text-align: left;
+  }
+
+  form .container_component input{
+    width:45%;
+    font-size: 1rem;
+  }
+
+  #goBackToHomePageButton,#submitButton1, #goToLoginPageButton {
+    font-size: 2.5vh;
+  }
+
+}
+
+
+@media only screen and (min-width: 200px) and (max-width: 475px) {
+  form {
+    width: 70%;
+  }
+
+
+  form .container_component {
+    flex-direction: column;
+  }
+
+  form .container_component label {
+    width:100%;
+    font-size: 0.7rem;
+    text-align: left;
+  }
+
+  form .container_component input {
+    width: 100%;
+    font-size: 20px;
+  }
+
+  form .formButtons {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  p, #navlink, #goBackToHomePageButton,#submitButton1, #goToLoginPageButton {
+    font-size: 1.5vh;
+  }
+
+  #goBackToHomePageButton,#submitButton1, #goToLoginPageButton {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+ 
+
+
+
+  
+}
+
+
+

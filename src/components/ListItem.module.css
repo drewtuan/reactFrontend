@@ -1,0 +1,49 @@
+.listItem {
+  display: flex;
+  flex-direction: column;
+  background-color:rgb(0, 153, 255);
+  border: 2px;
+  border-color: black;
+  border-style: solid;
+  color: white;
+  border-radius: 10px;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 1em;
+  list-style-type: none;
+  width: 100%;
+}
+
+.clientName {
+  color:rgb(244, 179, 17)
+}
+
+.petName {
+  color: rgb(0, 255, 102);
+}
+
+.patientName {
+  color: rgb(255, 140, 0)
+}
+
+.time {
+  color: rgb(255, 0, 221)
+}
+
+.date {
+  color:rgb(0, 13, 255)
+}
+
+#button_container{
+  width: 100%;
+}
+
+button {
+  margin-left: 80%;
+  border:none;
+  background-color:rgb(0, 153, 255);
+  width: 20%;
+}
+
+#information {
+  background-color:rgb(0, 153, 255);
+}
