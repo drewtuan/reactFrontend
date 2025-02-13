@@ -8,7 +8,8 @@ const openHour = 9; const openMinute=30;
 const closedHour = 20; const closedMinute = 30;
 const currentHour = currentDate.getHours(); const currentMinutes = currentDate.getMinutes();
  
-const condition1 = (currentHour <= openHour && currentMinutes < openMinute) || (currentHour >= closedHour && currentMinutes > closedMinute);
+const condition1 = (currentHour < openHour ) || (currentHour == openHour && currentMinutes < openMinute)
+|| (currentHour == closedHour && currentMinutes >= closedMinute) || (currentHour > closedHour);
 
 
 

@@ -83,7 +83,7 @@ export default function ClientDashboard() {
 
       <div className={styles.inner_container}>
 
-          <div className={styles.schedule_appointments_container}>
+        <div className={styles.schedule_appointments_container}>
             <div><h2>Your Scheduled Appointments ({data.length})</h2></div>
             <div className={styles.appointment_list_container}>
              
@@ -92,14 +92,14 @@ export default function ClientDashboard() {
                {error && <ErrorMessage />}
             
             </div>
-        </div>
+          </div>
 
-        <div className={styles.past_appointments_container}>
-        <div><h2>Your Past Appointments</h2></div>
-        <div></div>
-    </div>
+          <div className={styles.past_appointments_container}>
+              <div><h2>Your Past Appointments</h2></div>
+              <div></div>
+          </div>
       
-      </div>
+        </div>
       
     
     </div>

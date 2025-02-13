@@ -1,12 +1,11 @@
 /* eslint-disable react/prop-types */
 import styles from "./ListItem.module.css"
 
-export default function ListItem({key, item}) {
+export default function ListItem({index,item}) {
 
   var hour = parseInt(item.time.split(":")[0]);
   var minutes= parseInt(item.time.split(":")[1]);
 
-  console.log(minutes);
 
   var timeOfDayString = "";
   if(hour < 12) {
@@ -30,15 +29,18 @@ export default function ListItem({key, item}) {
   const formattedDate = item.date.split("T")[0];
   
   return (
-    <li key={key} className={styles.listItem}>
+    <li className={styles.listItem}>
       <div id={styles.button_container}>
-        <button>❌</button>
+        <p id={styles.appointmentNumber}>{index + 1}</p>
       </div>
       <div id={styles.information}>
         <p><span className={styles.clientName}>Client Name:</span> {item.clientName} </p>
         <p><span className={styles.petName}>Pet Name:</span> {item.patientName} </p>
         <p><span className={styles.time}>Time:</span> {hour}:{minuteString} {timeOfDayString}</p>
         <p><span className={styles.date}> Date: </span>{formattedDate}</p>
+      </div>
+      <div>
+        <button id={styles.cancelbutton}>Cancel ❌ </button>
       </div>
      
     </li>

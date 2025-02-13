@@ -6,7 +6,7 @@ import ListItem from "./ListItem"
 export default function ScheduleAppointmentList({appointments}) {
   return (
     <ul>
-      {appointments.map((item) => (<ListItem key={item.id} item={item}/>))}
+      {appointments.map((item, index) => (<ListItem key={item.id} index={index} item={item}/>))}
     </ul>
   )
 }
