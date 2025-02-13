@@ -38,13 +38,10 @@ h1 {
   
 }
 
-
-
-
 .past_appointments_container {
   background-color: white;
   border-radius: 15px;
-  width: 35%;
+  width: 30%;
   height: 60vh;
   overflow-y: scroll;
  

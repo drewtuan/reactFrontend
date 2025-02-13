@@ -53,7 +53,8 @@ button {
 
 #cancelbutton {
   width: auto;
-  background-color: green;
+  background-color: rgb(70, 233, 176);
+  color:rgb(0, 0, 0);
 }
 
 #information {
