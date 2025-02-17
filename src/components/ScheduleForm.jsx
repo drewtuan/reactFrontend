@@ -2,6 +2,7 @@ import styles from "./ScheduleForm.module.css"
 import ButtonNavLink from "./ButtonNavLink"
 import SubmitButton from "./SubmitButton"
 import ScheduleAppointment from "./ScheduleAppointment"
+import { makeTextSafe } from "../functions/validateText"
 
 
 
@@ -21,7 +22,25 @@ export default function ScheduleForm() {
   const[date, setDate] = useState("");
   const[time, setTime] = useState("");
   
-    // This function is for the dropdown menu list of pet types.
+  // validate the client's name.
+  const checkClientName = (e) => {
+    if(makeTextSafe(e.target.value)) {
+      setClientName(e.target.value);
+    }
+  }
+
+  // validate the pet's name
+  const checkPetName = (e) => {
+    if(makeTextSafe(e.target.value)) {
+      setPetName(e.target.value);
+    }
+  }
+
+  const checkPetBreed = (e) => {
+    if(makeTextSafe(e.target.value)) {
+      setPetBreed(e.target.value);
+    }
+  }
     
   // This function submits the data to the EC2 server and waits for a response that the data is validated and accepted.
   const handleSubmit = async(e) => {
@@ -141,17 +160,17 @@ export default function ScheduleForm() {
                 </div>
                 <div className={styles.subcontainer3}>
                   <label>Caretaker Name:</label>
-                  <input type="text" maxLength="30" value={clientName} onChange={(e) => setClientName(e.target.value)} required/>
+                  <input type="text" maxLength="30" value={clientName} onChange={checkClientName} required/>
                 </div>
             </div>
             <div className={styles.subcontainer2}>
                   <div className={styles.subcontainer3}>
                     <label>Pet Name:</label>
-                    <input type="text" maxLength="40" value={petName} onChange={(e) => setPetName(e.target.value)} required/>
+                    <input type="text" maxLength="40" value={petName} onChange={checkPetName} required/>
                   </div>
                   <div className={styles.subcontainer3}>
                     <label>Pet Breed:</label>
-                    <input type="text" maxLength="40" value={petBreed} onChange={(e) => setPetBreed(e.target.value)} required/>
+                    <input type="text" maxLength="40" value={petBreed} onChange={checkPetBreed} required/>
                 </div>
             </div>
             <div className={styles.subcontainer2}>

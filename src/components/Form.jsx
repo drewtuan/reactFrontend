@@ -3,6 +3,7 @@ import ButtonNavLink from "./ButtonNavLink";
 import SubmitButton from "./SubmitButton";
 import LoginNavLink from "./LoginNavLink";
 import axios from "axios";
+import { validateEmail } from "../functions/validateEmail";
 
 import { useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
@@ -37,6 +38,14 @@ export default function Form({backButtonPath}) {
 
 // navigator
 const navigator = useNavigate();
+
+
+//validate the emails for both login and signup data.
+const checkEmail = (e) => {
+   if(validateEmail(e.target.value)) {
+        setEmail(e.target.value);
+    }
+}
 
 // This function allows the pet owner to register/signup for an appointment.
 // The sign-up data is sent to a backend api. Frontend error handling is used for when the server responds with an error
@@ -153,7 +162,7 @@ const RegisterOwner = async (email, password) => {
           <div className={styles.container2}>
             <div className={styles.container_component}>
               <label>Email:</label>
-              <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} onKeyDown={pressEnterDown} required/>
+              <input type="email" value={email} onChange={checkEmail} onKeyDown={pressEnterDown} required/>
             </div>
             <div className={styles.container_component}>
               <label>Password:</label>
