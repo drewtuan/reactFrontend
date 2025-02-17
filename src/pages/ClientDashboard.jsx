@@ -79,8 +79,8 @@ export default function ClientDashboard() {
  
   return (
     <div className={styles.container}>
-      <h1>Client Dashboard </h1>
-
+      <h1>Client Dashboard</h1>
+      
       <div className={styles.inner_container}>
 
         <div className={styles.schedule_appointments_container}>

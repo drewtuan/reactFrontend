@@ -86,25 +86,41 @@ const RegisterOwner = async (email, password) => {
 
   // function that handles the submission of the user's account data (email and password) when logging in
   const LoginOwner = async(email, password) => {
-    const response = await fetch("https://api.vpbackendapi.com:5000/clientAuth/login",{
-      method:"POST",
-      headers:{
-        "Content-Type":"application/json",
-      },
-      body:JSON.stringify({email,password})
-    });
+    try {
+
+      //const apiUrl = 'https://54.158.247.54:5000/clientAuth/register';
+      const apiUrl3 = 'https://api.vpbackendapi.com:5000/clientAuth/login';
+
+      const response = await axios.post(
+        apiUrl3,
+        { email, password }, // Request body
+        {
+          headers: {
+            'Content-Type': 'application/json',
+          },
+        }
+      );
   
-    const data = await response.json();
-  
-    if(response.ok) {
-      navigator("/scheduling");
-      document.cookie = `token=${data.token}; path=/; Secure`;
-      console.log("Login successful, token saved as a cookie");
-      alert("Login Successful");
-      //setIsLoggedIn(true);
-  
-    } else {
-      console.error("Login failed", data.error);
+      if (response.status === 201) {
+        navigator("/scheduling");
+        console.log('Login successful:', response.data);
+        alert('User logged in successfully!');
+      }
+   
+    } catch (error) {
+      if (error.response) {
+        // Server responded with an error status
+        console.error('Login failed:', error.response.data);
+        alert(error.response.data.error || 'Login failed.');
+      } else if (error.request) {
+        // Request was made but no response was received
+        console.error('No response received:', error.request);
+        alert('Error: No response from the server.');
+      } else {
+        // Other errors
+        console.error('Error setting up request:', error.message);
+        alert(error.message);
+      }
     }
   };
 
