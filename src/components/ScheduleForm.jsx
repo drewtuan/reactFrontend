@@ -3,6 +3,7 @@ import ButtonNavLink from "./ButtonNavLink"
 import SubmitButton from "./SubmitButton"
 import ScheduleAppointment from "./ScheduleAppointment"
 import { makeTextSafe } from "../functions/validateText"
+import { validateEmail } from "../functions/validateEmail"
 
 
 
@@ -21,6 +22,13 @@ export default function ScheduleForm() {
   const[petType, setPetType] = useState("Dog");
   const[date, setDate] = useState("");
   const[time, setTime] = useState("");
+
+  //validate the emails for both login and signup data.
+  const checkEmail = (e) => {
+     if(validateEmail(e.target.value)) {
+          setEmail(e.target.value);
+      }
+  }
   
   // validate the client's name.
   const checkClientName = (e) => {
@@ -49,24 +57,21 @@ export default function ScheduleForm() {
 
   }
 
+  // current date
+  const todaysDate = new Date();
+  // current day.  Add 2 to get the correct formatted day
+  const currentDay = todaysDate.getDay() + 2;
+  // current month.  Add 1 to get the correct month
+  const currentMonth = todaysDate.getMonth() + 1;
+  // current year.
+  const currentYear = todaysDate.getFullYear();
+
   // This function is to validate the timestamp that the user sends
   
   const validateDate = async(e) => {
 
-      const todaysDate = new Date();
-      const currentDay = todaysDate.getDay() + 2;
-      const currentMonth = todaysDate.getMonth() + 1;
-      const currentYear = todaysDate.getFullYear();
-
-      console.log(todaysDate);
-      console.log(todaysDate.getDay());
-      console.log(todaysDate.getMonth());
-
-     
-
       
       const dateValue = e.target.value;
-      console.log(dateValue);
       
       const selectedYear = parseInt(dateValue.split("-")[0]);
       const selectedMonth = parseInt(dateValue.split("-")[1]);
@@ -112,17 +117,13 @@ export default function ScheduleForm() {
     const selectedMinute = parseInt(selectedTime.split(":")[1]);
 
 
-    //console.log(currentHour, currentMinutes);
-   
-    //const condition2 = selectedHour >= currentHour;
-
-    //const condition3 = selectedMinute >= minuteOpen;
-    //const condition4 = selectedMinute >= currentMinutes;
-
     const condition1 = (selectedHour <= hourOpen && selectedMinute <= minuteOpen) || (selectedHour <= currentHour && selectedMinute <= currentMinutes);
 
+    const condition2 = selectedHour >= hourClosed && (selectedMinute > minuteClosed || selectedMinute != minuteClosed);
 
-    const condition2 = selectedHour >= hourClosed && (selectedMinute > minuteClosed || selectedMinute != minuteClosed) ;
+    // correct the date and time validation by making sure the day, month, and year are valid before the time is entered.
+    //const condition3 = ;
+
 
     console.log(condition1, condition2);
     console.log(condition1 || condition2);
@@ -156,7 +157,7 @@ export default function ScheduleForm() {
             <div className={styles.subcontainer2}> 
                 <div className={styles.subcontainer3}>
                   <label>Caretaker Email:</label>
-                  <input type="email" maxLength="30" value={email} onChange={(e) => setEmail(e.target.value)} required/>
+                  <input type="email" maxLength="30" value={email} onChange={checkEmail} required/>
                 </div>
                 <div className={styles.subcontainer3}>
                   <label>Caretaker Name:</label>

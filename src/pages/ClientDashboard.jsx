@@ -23,11 +23,7 @@ function getCookie(name) {
 }
 
 
-
 const token = getCookie("token");
-
-
-
 
 
 // Client Dashboard component that allows the user to view newly created appointments and past visits.

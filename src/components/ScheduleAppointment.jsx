@@ -5,6 +5,7 @@ import axios from "axios";
 // This function returns the token stored in the cookie
 // if async does not work, get rid of it.
 
+// some borrowed code for getting cookie tokens.
 function getCookie(name) {
   const cookies = document.cookie.split(';');
   for(let i = 0; i < cookies.length; i++) {
@@ -17,6 +18,7 @@ function getCookie(name) {
   }
   return null;
 }
+
 
 
 
@@ -38,7 +40,6 @@ const ScheduleAppointment= async (email, Pname, Pbreed, Ptype, Cname, date, time
         { email: email, patientName: Pname, patientBreed: Pbreed, patientType: Ptype, clientName: Cname, date: date, time: time }, // Request body
         {
           headers: {
-            'Content-Type': 'application/json',
             'Authorization': 'Bearer ' + token
           },
         }
