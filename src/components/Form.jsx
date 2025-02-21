@@ -96,6 +96,7 @@ const RegisterOwner = async (email, password) => {
   // function that handles the submission of the user's account data (email and password) when logging in
   const LoginOwner = async(email, password) => {
 
+
     const response = await fetch("https://api.vpbackendapi.com:5000/clientAuth/login", {
       method: "POST",
       headers: {
@@ -108,10 +109,12 @@ const RegisterOwner = async (email, password) => {
   
     if (response.ok) {
       document.cookie = `token=${data.token}; path=/; Secure`;
+      alert("You have successfully logged in.  Press OK to go to Scheduling");
       navigator("/scheduling");
       console.log("Login successful, token saved as a cookie");
     } else {
       console.error("Login failed:", data.error);
+      console.log(email,password);
     }
    
   };
@@ -149,7 +152,7 @@ const RegisterOwner = async (email, password) => {
             </div>
             <div className={styles.container_component}>
               <label>Password:</label>
-              <input type="password" value={password} maxLength="12" onChange={(e) => setPassword(e.target.value)} onKeyDown={pressEnterDown} required/>
+              <input type="password" value={password} maxLength="30" onChange={(e) => setPassword(e.target.value)} onKeyDown={pressEnterDown} required/>
             </div>
           </div>
 

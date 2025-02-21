@@ -23,9 +23,15 @@
   color: rgb(0, 255, 102);
 }
 
+.petType {
+  color: rgb(162, 0, 255)
+}
+
+
 .patientName {
   color: rgb(255, 140, 0)
 }
+
 
 .time {
   color: rgb(255, 0, 221)

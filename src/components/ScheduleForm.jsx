@@ -54,6 +54,7 @@ export default function ScheduleForm() {
   const handleSubmit = async(e) => {
     e.preventDefault();
     await ScheduleAppointment(email, petName,petBreed, petType, clientName, date, time);
+    console.log(email, petName,petBreed, petType, clientName, date, time);
 
   }
 
@@ -66,8 +67,7 @@ export default function ScheduleForm() {
   // current year.
   const currentYear = todaysDate.getFullYear();
 
-  // This function is to validate the timestamp that the user sends
-  
+  // This function is to validate the date that the user sends
   const validateDate = async(e) => {
 
       
@@ -77,9 +77,6 @@ export default function ScheduleForm() {
       const selectedMonth = parseInt(dateValue.split("-")[1]);
       const selectedDay = parseInt(dateValue.split("-")[2]);
 
-      console.log(currentDay);
-      console.log(currentMonth, selectedMonth);
-      console.log(currentYear, selectedYear);
 
       const dayCondition = selectedDay >= currentDay;
       const monthCondition = selectedMonth >= currentMonth;
@@ -116,21 +113,31 @@ export default function ScheduleForm() {
     const selectedHour = parseInt(selectedTime.split(":")[0]);
     const selectedMinute = parseInt(selectedTime.split(":")[1]);
 
+    console.log(selectedHour);
+    console.log(selectedMinute);
 
-    const condition1 = (selectedHour <= hourOpen && selectedMinute <= minuteOpen) || (selectedHour <= currentHour && selectedMinute <= currentMinutes);
 
-    const condition2 = selectedHour >= hourClosed && (selectedMinute > minuteClosed || selectedMinute != minuteClosed);
+    const condition1 = (selectedHour == hourOpen && selectedMinute <= minuteOpen);
+
+    const condition2 = (selectedHour < hourOpen);
+
+    const condition3 = (selectedHour == hourClosed && selectedMinute >= minuteClosed);
+
+    const condition4 = (selectedHour > hourClosed);
+
+    const condition5 = (selectedHour <= currentHour && selectedMinute <= currentMinutes);
+
+    console.log(condition1);
+    console.log(condition2);
+    console.log(condition3);
 
     // correct the date and time validation by making sure the day, month, and year are valid before the time is entered.
     //const condition3 = ;
 
-
-    console.log(condition1, condition2);
-    console.log(condition1 || condition2);
-
-    if(condition1 || condition2) {
+    if(condition1 || condition2 || condition3 || condition4 || condition5) {
       //alert("Your selected time is invalid.  Please make it after our open time and before our closed time");
       console.log("invalid time.");
+      setTime("");
       alert("Your selectedtime is invalid. Your time is either before our open hours and the current time, or your time is after our closed time.");
     } else {
       setTime(selectedTime);
