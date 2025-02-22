@@ -58,13 +58,12 @@ export default function ClientDashboard() {
     return null;
   }
 
+  // This function deletes the cookie by setting the expiration date to a random past time
   const deleteCookieOnSignOut = async() => {
 
     const cookieName = getCookieName("token");
-    
     document.cookie = `${cookieName}=; expires=Wed, 02 Feb 1960 10:00:01 GMT;`;
     navigator("/")
-    console.log(name);
     
   }
     
@@ -93,10 +92,6 @@ export default function ClientDashboard() {
         
         console.log(response.data);
         setData(response.data.appointments);
-       
-        
-        
-
 
       } catch(error) {
         console.log("Error loading appointment data:", error);
@@ -129,7 +124,7 @@ export default function ClientDashboard() {
       <div className={styles.inner_container}>
 
         <div className={styles.schedule_appointments_container}>
-            <div><h2>Your Scheduled Appointments ({data.length})</h2></div>
+            <div><h2>Scheduled Appointments ({data.length})</h2></div>
             <div className={styles.appointment_list_container}>
              
                {isDataLoading && <Loading/>}

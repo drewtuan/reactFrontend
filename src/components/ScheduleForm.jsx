@@ -119,11 +119,11 @@ export default function ScheduleForm() {
 
     const condition1 = (selectedHour == hourOpen && selectedMinute <= minuteOpen);
 
-    const condition2 = (selectedHour < hourOpen);
+    const condition2 = (selectedHour < hourOpen && selectedMinute != minuteOpen);
 
     const condition3 = (selectedHour == hourClosed && selectedMinute >= minuteClosed);
 
-    const condition4 = (selectedHour > hourClosed);
+    const condition4 = (selectedHour > hourClosed && selectedMinute != minuteOpen);
 
     const condition5 = (selectedHour <= currentHour && selectedMinute <= currentMinutes);
 
@@ -203,7 +203,7 @@ export default function ScheduleForm() {
             </div>
             <div className={styles.subcontainer3}>
                 <label>Appointment Time:</label>
-                <input id={styles.timeBox} type="time" value={time} onChange={validateTime} required/>
+                <input id={styles.timeBox} type="time" value={time} onChange={validateTime} onKeyDown={validateTime} required/>
             </div>
 
         </div>

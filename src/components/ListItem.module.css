@@ -60,6 +60,7 @@ button {
 
 #cancelbutton {
   width: auto;
+  border: solid;
   background-color: rgb(70, 233, 176);
   color:rgb(0, 0, 0);
 }

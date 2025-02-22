@@ -45,7 +45,7 @@ h1 {
 .schedule_appointments_container {
   background-color: white;
   border-radius: 15px;
-  width: 30%;
+  width: 40%;
   height: 60vh;
   overflow-y: scroll;
   
@@ -63,7 +63,7 @@ h1 {
 .past_appointments_container {
   background-color: white;
   border-radius: 15px;
-  width: 30%;
+  width: 40%;
   height: 60vh;
   overflow-y: scroll;
  

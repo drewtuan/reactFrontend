@@ -35,7 +35,7 @@ export default function ListItem({index,item}) {
       </div>
       <div id={styles.information}>
         <p><span className={styles.clientName}>Email:</span> {item.Patient.Client["email"]} </p>
-        <p><span className={styles.petName}>Pet Name:</span> {item.patientName} </p>
+        <p><span className={styles.petName}>Pet Name:</span> {item.Patient.patientName} </p>
         <p><span className={styles.petType}>Pet Type:</span> {item.Patient.patientType} </p>
         <p><span className={styles.time}>Time:</span> {hour}:{minuteString} {timeOfDayString}</p>
         <p><span className={styles.date}> Date: </span>{formattedDate}</p>
