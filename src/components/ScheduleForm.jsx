@@ -58,17 +58,19 @@ export default function ScheduleForm() {
 
   }
 
-  // current date
-  const todaysDate = new Date();
-  // current day.  Add 2 to get the correct formatted day
-  const currentDay = todaysDate.getDay() + 2;
-  // current month.  Add 1 to get the correct month
-  const currentMonth = todaysDate.getMonth() + 1;
-  // current year.
-  const currentYear = todaysDate.getFullYear();
 
   // This function is to validate the date that the user sends
   const validateDate = async(e) => {
+
+       // current date
+      const todaysDate = new Date();
+      console.log(todaysDate);
+      // current day.
+      const currentDay = (todaysDate.getDate());
+      // current month.  Add 1 to get the correct month
+      const currentMonth = (todaysDate.getMonth() + 1) % 12;
+      // current year.
+       const currentYear = todaysDate.getFullYear();
 
       
       const dateValue = e.target.value;
@@ -77,18 +79,23 @@ export default function ScheduleForm() {
       const selectedMonth = parseInt(dateValue.split("-")[1]);
       const selectedDay = parseInt(dateValue.split("-")[2]);
 
+      console.log(todaysDate);
+      console.log(selectedYear, currentYear);
+      console.log(selectedMonth, currentMonth);
+      console.log(selectedDay, currentDay);
 
-      const dayCondition = selectedDay >= currentDay;
-      const monthCondition = selectedMonth >= currentMonth;
-      const yearCondition = selectedYear == currentYear;
+
+      const dayCondition = selectedDay < currentDay;
+      const monthCondition = selectedMonth < currentMonth;
+      const yearCondition = selectedYear != currentYear;
       
 
 
-      if(dayCondition && monthCondition && yearCondition) {
-        setDate(dateValue);
-      } else {
-        alert("Please input a date that is today or after today's date. Must be this year.");
+      if(dayCondition || monthCondition || yearCondition) {
+        alert("Please input a date that is today or after today's date. Your appointment must be this year.");
         console.error("Invalid date");
+      } else {
+        setDate(dateValue);
       }
     
   }
