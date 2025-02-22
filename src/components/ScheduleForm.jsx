@@ -64,7 +64,6 @@ export default function ScheduleForm() {
 
        // current date
       const todaysDate = new Date();
-      console.log(todaysDate);
       // current day.
       const currentDay = (todaysDate.getDate());
       // current month.  Add 1 to get the correct month
@@ -79,21 +78,23 @@ export default function ScheduleForm() {
       const selectedMonth = parseInt(dateValue.split("-")[1]);
       const selectedDay = parseInt(dateValue.split("-")[2]);
 
+      /*
       console.log(todaysDate);
       console.log(selectedYear, currentYear);
       console.log(selectedMonth, currentMonth);
       console.log(selectedDay, currentDay);
+      */
 
 
-      const dayCondition = selectedDay < currentDay;
-      const monthCondition = selectedMonth < currentMonth;
-      const yearCondition = selectedYear != currentYear;
+      const condition1 = selectedMonth < currentMonth;
+      const condition2 = selectedMonth == currentMonth && selectedDay < currentDay;
+      const condition3 = selectedYear != currentYear;
       
 
 
-      if(dayCondition || monthCondition || yearCondition) {
+      if(condition1 || condition2 || condition3) {
         alert("Please input a date that is today or after today's date. Your appointment must be this year.");
-        console.error("Invalid date");
+        setDate("");
       } else {
         setDate(dateValue);
       }
@@ -120,35 +121,23 @@ export default function ScheduleForm() {
     const selectedHour = parseInt(selectedTime.split(":")[0]);
     const selectedMinute = parseInt(selectedTime.split(":")[1]);
 
-    console.log(selectedHour);
-    console.log(selectedMinute);
 
-
-    const condition1 = (selectedHour == hourOpen && selectedMinute <= minuteOpen);
-
-    const condition2 = (selectedHour < hourOpen && selectedMinute != minuteOpen);
-
-    const condition3 = (selectedHour == hourClosed && selectedMinute >= minuteClosed);
-
-    const condition4 = (selectedHour > hourClosed && selectedMinute != minuteOpen);
-
-    const condition5 = (selectedHour <= currentHour && selectedMinute <= currentMinutes);
-
-    console.log(condition1);
-    console.log(condition2);
-    console.log(condition3);
+    const condition1 = (selectedHour < hourOpen);
+    const condition2 = (selectedHour == hourOpen) && (selectedMinute <= minuteOpen);
+    const condition3 = (selectedHour < currentHour);
+    const condition4 = (selectedHour == currentHour) && (selectedMinute <= currentMinutes);
+    const condition5 = (selectedHour > hourClosed);
+    const condition6 = (selectedHour == hourClosed) && (selectedMinute >= minuteClosed);
 
     // correct the date and time validation by making sure the day, month, and year are valid before the time is entered.
-    //const condition3 = ;
 
-    if(condition1 || condition2 || condition3 || condition4 || condition5) {
+  
+    if(condition1 || condition2|| condition3 || condition4 || condition5 || condition6) {
       //alert("Your selected time is invalid.  Please make it after our open time and before our closed time");
-      console.log("invalid time.");
       setTime("");
-      alert("Your selectedtime is invalid. Your time is either before our open hours and the current time, or your time is after our closed time.");
+      //alert("Your selectedtime is invalid. Your time is either between 9:30 a.m. and 8:30 p.m., or your time is after our closed time.");
     } else {
       setTime(selectedTime);
-      console.log("valid time.");
     }
   
 
@@ -209,8 +198,8 @@ export default function ScheduleForm() {
               </div>
             </div>
             <div className={styles.subcontainer3}>
-                <label>Appointment Time:</label>
-                <input id={styles.timeBox} type="time" value={time} onChange={validateTime} onKeyDown={validateTime} required/>
+                <label>Appointment Time (must be between 9:30 a.m. and 8:30 p.m.): </label>
+                <input id={styles.timeBox} type="time" value={time} onChange={validateTime} required/>
             </div>
 
         </div>
