@@ -135,7 +135,7 @@ export default function ClientDashboard() {
           </div>
 
           <div className={styles.past_appointments_container}>
-              <div><h2>Your Past Appointments</h2></div>
+              <div><h2>Your Past Appointment History</h2></div>
               <div></div>
           </div>
       
