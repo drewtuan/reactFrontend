@@ -124,7 +124,7 @@ export default function ClientDashboard() {
       <div className={styles.inner_container}>
 
         <div className={styles.schedule_appointments_container}>
-            <div><h2>Scheduled Appointments ({data.length})</h2></div>
+            <div><h2>Scheduled Appointments ({data.length} scheduled)</h2></div>
             <div className={styles.appointment_list_container}>
              
                {isDataLoading && <Loading/>}
