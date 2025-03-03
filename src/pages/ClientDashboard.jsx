@@ -139,7 +139,7 @@ export default function ClientDashboard() {
       <div className={styles.inner_container}>
 
         <div className={styles.schedule_appointments_container}>
-            <div><h2>Scheduled Appointments ({future_appointments.length} scheduled)</h2></div>
+            <div><h2>Future Scheduled Appointments ({future_appointments.length} scheduled)</h2></div>
             <div className={styles.appointment_list_container}>
              
                {isDataLoading && <Loading/>}
@@ -150,7 +150,7 @@ export default function ClientDashboard() {
           </div>
 
           <div className={styles.past_appointments_container}>
-              <div><h2>Your Past Appointment History ({past_appointments.length})</h2></div>
+              <div><h2>Your Past Appointment History ({past_appointments.length} scheduled)</h2></div>
               <div>
                 {isDataLoading && <Loading/>}
                 {!isDataLoading && !error && <ScheduleAppointmentList appointments={past_appointments}/>}
