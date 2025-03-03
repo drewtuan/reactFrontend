@@ -26,7 +26,7 @@ export default function ListItem({index,item}) {
 
  
 
-  const formattedDate = item.date.split("T")[0];
+  //const formattedDate = item.date.split("T")[0];
   
   return (
     <li className={styles.listItem}>
@@ -38,7 +38,7 @@ export default function ListItem({index,item}) {
         <p><span className={styles.petName}>Pet Name:</span> {item.Patient.patientName} </p>
         <p><span className={styles.petType}>Pet Type:</span> {item.Patient.patientType} </p>
         <p><span className={styles.time}>Time:</span> {hour}:{minuteString} {timeOfDayString}</p>
-        <p><span className={styles.date}> Date: </span>{formattedDate}</p>
+        <p><span className={styles.date}> Date: </span>{item.date}</p>
       </div>
       <div>
         <button id={styles.cancelbutton}>Cancel ❌ </button>

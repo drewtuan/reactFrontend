@@ -1,7 +1,6 @@
 import styles from "./ClientDashboard.module.css"
 import {useEffect, useState } from "react";
 import {useNavigate} from "react-router-dom"
-import {isPastDate} from "../functions/isPastDate"
 import axios from "axios";
 import Loading from "../components/Loading"
 import ErrorMessage from "../components/ErrorMessage";
@@ -19,13 +18,24 @@ export default function ClientDashboard() {
   const [error, setError] = useState(false);
   const [data, setData] = useState([]);
 
-  // useState hook for past data.  variable "pastdata" and function "setPastData".
-  const [pastData, setPastData] = useState([]);
+  // filtered list of past appointments
+  const past_appointments = data.filter((appointment) => {
+    const appointment_date = new Date(appointment.date + "T" + appointment.time);
+    const current_date = new Date();
 
-  const date = new Date();
-  console.log(date);
-  console.log(date.getDay());
-  console.log(date.getFullYear());
+    return appointment_date.getTime() < current_date.getTime();
+  });
+
+  // filtered list of future appointments
+  const future_appointments = data.filter((appointment) => {
+    const appointment_date = new Date(appointment.date + "T" + appointment.time);
+    const current_date = new Date();
+
+    return appointment_date.getTime() >= current_date.getTime();
+  });
+
+  console.log(data);
+  console.log(past_appointments);
 
   // color for the navigation button on this page (Back button).
   const backButtonColor = "orange";
@@ -56,7 +66,6 @@ export default function ClientDashboard() {
       
       // picks which substring starts with the token name plus the equal sign
       if (cookie.startsWith(name)) { 
-        console.log(name);
         return name; // returns the token not counting "name="
       }
     }
@@ -90,13 +99,10 @@ export default function ClientDashboard() {
           }
         );
         
-        const futureAppointments = response.data;
-        console.log(futureAppointments);
-        setData(futureAppointments.appointments);
-
-
-
-        
+        const account_data = response.data;
+        const myappointments = account_data.appointments
+        //console.log(appointments.appointments);
+        setData(myappointments);
 
       } catch(error) {
         console.log("Error loading appointment data:", error);
@@ -110,8 +116,12 @@ export default function ClientDashboard() {
 
   },[]); //where dependency array goes.
 
-   
-//   {data.map((item) => (<ListItem key={item.id} item={item}/>))}
+
+
+ 
+
+
+
  
   return (
     <div className={styles.container}>
@@ -129,21 +139,21 @@ export default function ClientDashboard() {
       <div className={styles.inner_container}>
 
         <div className={styles.schedule_appointments_container}>
-            <div><h2>Scheduled Appointments ({data.length} scheduled)</h2></div>
+            <div><h2>Scheduled Appointments ({future_appointments.length} scheduled)</h2></div>
             <div className={styles.appointment_list_container}>
              
                {isDataLoading && <Loading/>}
-               {!isDataLoading && !error && <ScheduleAppointmentList appointments={data}/>}
+               {!isDataLoading && !error && <ScheduleAppointmentList appointments={future_appointments}/>}
                {error && <ErrorMessage />}
             
             </div>
           </div>
 
           <div className={styles.past_appointments_container}>
-              <div><h2>Your Past Appointment History</h2></div>
+              <div><h2>Your Past Appointment History ({past_appointments.length})</h2></div>
               <div>
                 {isDataLoading && <Loading/>}
-                {!isDataLoading && !error && <ScheduleAppointmentList appointments={data}/>}
+                {!isDataLoading && !error && <ScheduleAppointmentList appointments={past_appointments}/>}
                 {error && <ErrorMessage />}
               </div>
           </div>
