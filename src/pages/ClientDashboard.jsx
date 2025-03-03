@@ -1,10 +1,12 @@
 import styles from "./ClientDashboard.module.css"
 import {useEffect, useState } from "react";
 import {useNavigate} from "react-router-dom"
+import {isPastDate} from "../functions/isPastDate"
 import axios from "axios";
 import Loading from "../components/Loading"
 import ErrorMessage from "../components/ErrorMessage";
 import ButtonNavLink from "../components/ButtonNavLink";
+
 //import { getCookie } from "../functions/GetCookie";
 //import ListItem from "../components/ListItem";
 import ScheduleAppointmentList from "../components/ScheduleAppointmentList"
@@ -16,6 +18,9 @@ export default function ClientDashboard() {
   const [isDataLoading, setIsDateLoading] = useState(false);
   const [error, setError] = useState(false);
   const [data, setData] = useState([]);
+
+  // useState hook for past data.  variable "pastdata" and function "setPastData".
+  const [pastData, setPastData] = useState([]);
 
   const date = new Date();
   console.log(date);
@@ -68,11 +73,6 @@ export default function ClientDashboard() {
   }
     
 
-  
-  
-  
-
-
   // The data is fetched on the client dashboard pages initial render (when the page shows up)
   // This is because of the useEffect hook which allows for these actions to ocurr.
   useEffect(() => {
@@ -90,8 +90,13 @@ export default function ClientDashboard() {
           }
         );
         
-        console.log(response.data);
-        setData(response.data.appointments);
+        const futureAppointments = response.data;
+        console.log(futureAppointments);
+        setData(futureAppointments.appointments);
+
+
+
+        
 
       } catch(error) {
         console.log("Error loading appointment data:", error);
@@ -136,7 +141,11 @@ export default function ClientDashboard() {
 
           <div className={styles.past_appointments_container}>
               <div><h2>Your Past Appointment History</h2></div>
-              <div></div>
+              <div>
+                {isDataLoading && <Loading/>}
+                {!isDataLoading && !error && <ScheduleAppointmentList appointments={data}/>}
+                {error && <ErrorMessage />}
+              </div>
           </div>
       
         </div>

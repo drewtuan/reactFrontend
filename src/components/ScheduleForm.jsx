@@ -4,10 +4,6 @@ import SubmitButton from "./SubmitButton"
 import ScheduleAppointment from "./ScheduleAppointment"
 import { makeTextSafe } from "../functions/validateText"
 import { validateEmail } from "../functions/validateEmail"
-
-
-
-
 import { useState } from "react";
 
 export default function ScheduleForm() {
