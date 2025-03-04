@@ -1,5 +1,7 @@
 /* eslint-disable react/prop-types */
 import styles from "./ListItem.module.css"
+import DOMPurify from "dompurify";
+
 
 export default function ListItem({index,item}) {
 
@@ -34,11 +36,11 @@ export default function ListItem({index,item}) {
         <p id={styles.appointmentNumber}>#{index + 1}</p>
       </div>
       <div id={styles.information}>
-        <p><span className={styles.clientName}>Email:</span> {item.Patient.Client["email"]} </p>
-        <p><span className={styles.petName}>Pet Name:</span> {item.Patient.patientName} </p>
-        <p><span className={styles.petType}>Pet Type:</span> {item.Patient.patientType} </p>
-        <p><span className={styles.time}>Time:</span> {hour}:{minuteString} {timeOfDayString}</p>
-        <p><span className={styles.date}> Date: </span>{item.date}</p>
+        <p><span className={styles.clientName}>Email:</span> {DOMPurify.sanitize(item.Patient.Client["email"])} </p>
+        <p><span className={styles.petName}>Pet Name:</span> {DOMPurify.sanitize(item.Patient.patientName)} </p>
+        <p><span className={styles.petType}>Pet Type:</span> {DOMPurify.sanitize(item.Patient.patientType)} </p>
+        <p><span className={styles.time}>Time:</span> {DOMPurify.sanitize(hour)}:{DOMPurify.sanitize(minuteString)} {DOMPurify.sanitize(timeOfDayString)}</p>
+        <p><span className={styles.date}> Date: </span>{DOMPurify.sanitize(item.date)}</p>
       </div>
       <div>
         <button id={styles.cancelbutton}>Cancel ❌ </button>
