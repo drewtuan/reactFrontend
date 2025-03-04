@@ -26,10 +26,11 @@ export default function ClientDashboard() {
     return appointment_date.getTime() < current_date.getTime();
   });
 
-  // filtered list of future appointments
+  // filtered list of appointments now and in the future
   const future_appointments = data.filter((appointment) => {
     const appointment_date = new Date(appointment.date + "T" + appointment.time);
     const current_date = new Date();
+    console.log(appointment_date);
 
     return appointment_date.getTime() >= current_date.getTime();
   });
