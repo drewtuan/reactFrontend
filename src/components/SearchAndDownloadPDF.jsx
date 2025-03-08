@@ -1,5 +1,7 @@
-import { useState } from "react"
-import styles from "./SearchAndDownloadPDF.module.css"
+import { useState } from "react";
+import styles from "./SearchAndDownloadPDF.module.css";
+import {makeTextSafe} from "../functions/validateText";
+
 export default function SearchAndDownloadPDF() {
 
   const [data, setData] = useState("Enter pet name");
@@ -8,7 +10,10 @@ export default function SearchAndDownloadPDF() {
 
   // This function is to assign the data variable with the user's input using the setData() method
   const handleInputChange = (event) => {
-    setData(event.target.value);
+      if(makeTextSafe(event.target.value)) {
+        setData(event.target.value);
+      }
+
   };
 
   // this function shows if the user has focused (click on) the input field.
@@ -27,6 +32,7 @@ export default function SearchAndDownloadPDF() {
       setInputFocused(false);
     }
   };
+
 
   return (
     <div className={styles.container}>
