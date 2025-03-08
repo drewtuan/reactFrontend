@@ -8,6 +8,8 @@ import SchedulingPage from "./pages/SchedulingPage";
 import ClientDashboard from "./pages/ClientDashboard"
 import PageNotFound from "./pages/PageNotFound";
 
+// This function looks for the name of the cookie to see if it exists.  
+// If it does not find a cookie with a certain name, it returns false.  If it does find a name, it returns true.
 const doesCookieExist = (name)=> {
   const cookies = document.cookie.split(';');
   for(let i = 0; i < cookies.length; i++) {

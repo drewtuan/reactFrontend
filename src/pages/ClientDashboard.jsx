@@ -9,6 +9,7 @@ import ButtonNavLink from "../components/ButtonNavLink";
 //import { getCookie } from "../functions/GetCookie";
 //import ListItem from "../components/ListItem";
 import ScheduleAppointmentList from "../components/ScheduleAppointmentList"
+import SearchAndDownloadPDF from "../components/SearchAndDownloadPDF";
 
 
 // Client Dashboard component that allows the user to view newly created appointments and past visits.
@@ -45,7 +46,8 @@ export default function ClientDashboard() {
   const navigator = useNavigate();
 
   // source https://github.com/PranayChavhan/GSport-V1
-  // get the cookie string
+  // This function returns the access token of the cookie by only including the 
+  // portion of the cookie string that is not the cookie name
   const getCookieToken = (name)=> {
     const cookies = document.cookie.split(';');
     for(let i = 0; i < cookies.length; i++) {
@@ -59,7 +61,7 @@ export default function ClientDashboard() {
     return null;
   }
 
-  // return the cookie name
+  // This function returns the cookie name if it exists.  Else, it returns null
   const getCookieName = (name)=> {
     const cookies = document.cookie.split(';');
     for(let i = 0; i < cookies.length; i++) {
@@ -118,11 +120,6 @@ export default function ClientDashboard() {
   },[]); //where dependency array goes.
 
 
-
- 
-
-
-
  
   return (
     <div className={styles.container}>
@@ -159,6 +156,10 @@ export default function ClientDashboard() {
               </div>
           </div>
       
+        </div>
+        <div className={styles.download_pdf_section}>
+          <h2 className={styles.pdf_header}>Download Individual Pet appointments as PDFs</h2>
+          <SearchAndDownloadPDF />
         </div>
       
     
