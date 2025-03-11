@@ -91,6 +91,7 @@ const RegisterOwner = async (email, password) => {
 
 const incrementLoginAttempts = () => {
   setLoginAttempts(count => count + 1);
+  console.log(loginAttempts);
 }
 
 
@@ -111,8 +112,6 @@ const LoginOwner = async(email, password) => {
     if (response.ok) {
       // create a cookie from the document object.
       document.cookie = `token=${data.token}; path=/; Secure`;
-      // increase the number of login attempts
-      incrementLoginAttempts();
       // have an alert popup when you have logged in successfully
       alert("You have successfully logged in.  Press OK to go to Scheduling");
       // navigate to the scheduling page
@@ -120,8 +119,7 @@ const LoginOwner = async(email, password) => {
       console.log("Login successful, token saved as a cookie");
     } else {
       console.error("Login failed:", data.error);
-      // increase the number of login attempts
-      incrementLoginAttempts();
+    
     }
    
   };
@@ -134,7 +132,16 @@ const LoginOwner = async(email, password) => {
   
   const handleSubmit2 = async(e) => {
     e.preventDefault();
-    await LoginOwner(email, password);
+    // increments the number of login attempts.
+    incrementLoginAttempts();
+
+    // because the state here has not been updated even when the person has already sent a login request,
+    // when the user sends a first request, state variable (loginAttempts) equals 0, after second request, 1, and third request, 2.
+    if(loginAttempts <= 2) {
+      await LoginOwner(email, password);
+    } else {
+      e.preventDefault();
+    }
   }
 
   const pressEnterDown = (event) => {
