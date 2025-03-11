@@ -35,6 +35,10 @@ form .container_component {
   padding: 2vh;
 }
 
+p {
+  text-align: center;
+}
+
 form .container_component label {
   width: 30%;
   font-size: 3vh;

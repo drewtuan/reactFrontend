@@ -2,9 +2,9 @@ import styles from "./Form.module.css"
 import ButtonNavLink from "./ButtonNavLink";
 import SubmitButton from "./SubmitButton";
 import LoginNavLink from "./LoginNavLink";
+import LoginAttemptsCounter from "./LoginAttemptsCounter";
 import axios from "axios";
 import { validateEmail } from "../functions/validateEmail";
-
 import { useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 //import { hashPassword } from "../functions/hashPassword";
@@ -18,7 +18,7 @@ export default function Form({backButtonPath}) {
   // and setYourEmail and setYourPassword are functions.  The useState for each of them is blank in the input fields.
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
- // const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [loginAttempts, setLoginAttempts] = useState(0);
 
   
   // button colors
@@ -50,8 +50,6 @@ const checkEmail = (e) => {
 // This function allows the pet owner to register/signup for an appointment.
 // The sign-up data is sent to a backend api. Frontend error handling is used for when the server responds with an error
 const RegisterOwner = async (email, password) => {
-
-
 
     try {
 
@@ -90,11 +88,14 @@ const RegisterOwner = async (email, password) => {
       }
     }
 }
- 
+
+const incrementLoginAttempts = () => {
+  setLoginAttempts(count => count + 1);
+}
 
 
-  // function that handles the submission of the user's account data (email and password) when logging in
-  const LoginOwner = async(email, password) => {
+// function that handles the submission of the user's account data (email and password) when logging in
+const LoginOwner = async(email, password) => {
 
 
     const response = await fetch("https://api.vpbackendapi.com:5000/clientAuth/login", {
@@ -108,13 +109,19 @@ const RegisterOwner = async (email, password) => {
     const data = await response.json();
   
     if (response.ok) {
+      // create a cookie from the document object.
       document.cookie = `token=${data.token}; path=/; Secure`;
+      // increase the number of login attempts
+      incrementLoginAttempts();
+      // have an alert popup when you have logged in successfully
       alert("You have successfully logged in.  Press OK to go to Scheduling");
+      // navigate to the scheduling page
       navigator("/scheduling");
       console.log("Login successful, token saved as a cookie");
     } else {
       console.error("Login failed:", data.error);
-      console.log(email,password);
+      // increase the number of login attempts
+      incrementLoginAttempts();
     }
    
   };
@@ -162,10 +169,9 @@ const RegisterOwner = async (email, password) => {
           </div>
         
         </div>
-
-       
-        
         <LoginNavLink/>
+
+        <LoginAttemptsCounter count={loginAttempts} />
 
  
     </form>

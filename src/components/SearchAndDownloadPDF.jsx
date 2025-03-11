@@ -41,7 +41,9 @@ export default function SearchAndDownloadPDF() {
         onBlur={handleBlur} placeholder={!inputFocused ? placeholder : ''} onChange={handleInputChange} />
         <button className={styles.searchButton}>Search</button>
       </div>
-      <button className={styles.pdfButton}>Download PDF</button>
+      <div className={styles.subcontainer2}>
+        <button className={styles.pdfButton}>Download PDF</button>
+      </div>
     </div>
   )
 }

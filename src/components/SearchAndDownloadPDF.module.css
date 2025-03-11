@@ -10,6 +10,10 @@
   justify-content: space-around;
 }
 
+.subcontainer2 {
+  width: 20vw;
+}
+
 
 .searchButton {
   background-color: rgb(249, 71, 5);
@@ -18,7 +22,14 @@
 
 
 .pdfButton {
-
   background-color: rgb(158, 98, 223);
+  width: 20vw;
 }
 
+@media only screen and (min-width: 1601px) and (max-width: 1900px) { 
+
+.container {
+  display: block;
+}
+
+}

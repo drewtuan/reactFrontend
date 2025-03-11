@@ -80,7 +80,7 @@ export default function ClientDashboard() {
 
     const cookieName = getCookieName("token");
     document.cookie = `${cookieName}=; expires=Wed, 02 Feb 1960 10:00:01 GMT;`;
-    navigator("/")
+    navigator("/");
     
   }
     
