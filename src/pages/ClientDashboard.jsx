@@ -45,7 +45,6 @@ export default function ClientDashboard() {
   // navigator
   const navigator = useNavigate();
 
-  // source https://github.com/PranayChavhan/GSport-V1
   // This function returns the access token of the cookie by only including the 
   // portion of the cookie string that is not the cookie name
   const getCookieToken = (name)=> {

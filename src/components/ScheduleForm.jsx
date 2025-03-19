@@ -1,7 +1,7 @@
 import styles from "./ScheduleForm.module.css"
 import ButtonNavLink from "./ButtonNavLink"
 import SubmitButton from "./SubmitButton"
-import ScheduleAppointment from "./ScheduleAppointment"
+import ScheduleAppointment from "../functions/ScheduleAppointment"
 import { makeTextSafe } from "../functions/validateText"
 import { validateEmail } from "../functions/validateEmail"
 import { useState } from "react";
