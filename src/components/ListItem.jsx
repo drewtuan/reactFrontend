@@ -7,6 +7,7 @@ export default function ListItem({index,item}) {
 
   var hour = parseInt(item.time.split(":")[0]);
   var minutes= parseInt(item.time.split(":")[1]);
+  
 
 
   var timeOfDayString = "";

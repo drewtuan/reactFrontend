@@ -1,0 +1,20 @@
+.container {
+  background-image: url("../images/dog3.png");
+  background-size:cover;
+  background-repeat: no-repeat;
+  width: 100%;
+  height: 120vh;
+  overflow: scroll;
+
+}
+
+.navbar {
+  display:flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
+#goBackButton {
+  border: solid;
+  width: 4em;
+}
