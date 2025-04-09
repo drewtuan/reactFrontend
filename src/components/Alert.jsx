@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 import styles from "./Alert.module.css"
-
+import {createTime2} from "../functions/createTime2"
 // eslint-disable-next-line react/prop-types
 export default function Alert({data}) {
 
@@ -12,11 +12,9 @@ export default function Alert({data}) {
   const patient_medicine = JSON.stringify(data[0]["Patient"]["medication"]);
   const patient_date = JSON.stringify(data[0]["date"]).replace(/['"]/g, '');
   const patient_time = JSON.stringify(data[0]["time"]).replace(/['"]/g, '');
- 
-  
-  
-  //myString.replace(/['"]/g, ''); 
 
+  const myString = createTime2(patient_time);
+ 
   return (
     <div className={styles.alertContainer}>
       <p id={styles.alertText}>Alert!</p>
@@ -24,7 +22,7 @@ export default function Alert({data}) {
       <p>Diagnoses: {patient_diagnoses}</p>
       <p>Medication: {patient_medicine}</p>
       <p>Bloodwork:</p>
-      <p>Due date: {patient_date} at {patient_time}</p>
+      <p>Due date: {patient_date} at {myString}</p>
     </div>
   )
 }

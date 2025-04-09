@@ -33,7 +33,7 @@ export default function SearchAndDownloadPDF() {
     }
   };
 
-  /*
+  
   const getCookieToken = (name) => {
     const cookies = document.cookie.split(';');
     for(let i = 0; i < cookies.length; i++) {
@@ -46,15 +46,32 @@ export default function SearchAndDownloadPDF() {
     }
     return null;
   }
-    */
+    
 
 
 
 const searchPetName = async() => {
 
-  //const token = getCookieToken("token");
-  const apiUrl = new URL('https://api.vpbackendapi.com:5000/api/patient-pdf');
-  apiUrl.searchParams.append('petName', petName);
+  const token = getCookieToken("token");
+  const data = {patientName: petName};
+  const url = "https://api.vpbackendapi.com:5000/api/patient-pdf";
+
+    fetch(url, {
+      method: 'GET',
+      headers: {
+        'Authorization': `Bearer ${token}`,
+        'Content-Type': 'application/json',
+        patientName: data.patientName,  
+      }
+    })
+    .then(response => response.json())
+    .then(data => {
+      console.log('Response:', data);
+    })
+    .catch(error => {
+      console.error('Error:', error);
+    });
+  
   
 
     

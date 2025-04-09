@@ -1,10 +1,12 @@
 /* eslint-disable react/prop-types */
 import styles from "./ListItem.module.css"
+import {createTime} from "../functions/createTime"
 import DOMPurify from "dompurify";
 
 
 export default function ListItem({index,item}) {
 
+  /*
   var hour = parseInt(item.time.split(":")[0]);
   var minutes= parseInt(item.time.split(":")[1]);
   
@@ -26,6 +28,9 @@ export default function ListItem({index,item}) {
   } else {
     minuteString = minuteString + minutes;
   }
+  */
+
+  const timeString = createTime(item);
 
  
 
@@ -40,7 +45,7 @@ export default function ListItem({index,item}) {
         <p><span className={styles.clientName}>Email:</span> {DOMPurify.sanitize(item.Patient.Client["email"])} </p>
         <p><span className={styles.petName}>Pet Name:</span> {DOMPurify.sanitize(item.Patient.patientName)} </p>
         <p><span className={styles.petType}>Pet Type:</span> {DOMPurify.sanitize(item.Patient.patientType)} </p>
-        <p><span className={styles.time}>Time:</span> {DOMPurify.sanitize(hour)}:{DOMPurify.sanitize(minuteString)} {DOMPurify.sanitize(timeOfDayString)}</p>
+        <p><span className={styles.time}>Time:</span> {DOMPurify.sanitize(timeString)}</p>
         <p><span className={styles.date}> Date: </span>{DOMPurify.sanitize(item.date)}</p>
       </div>
       <div>
