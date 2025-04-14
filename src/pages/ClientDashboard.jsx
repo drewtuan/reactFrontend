@@ -160,18 +160,16 @@ export default function ClientDashboard() {
         <div className={styles.navbar_item}>
           <button
             className={styles.sign_out_button}
-            onClick={deleteCookieOnSignOut}
-          >
+            onClick={deleteCookieOnSignOut}>
             Sign Out
           </button>
+          <ButtonNavLink
+            to="/alerts"
+            id={styles.goBackButton}
+            color={"#fc2403"}>
+            Alerts➡
+          </ButtonNavLink>
         </div>
-        <ButtonNavLink
-          to="/alerts"
-          id={styles.goBackButton}
-          color={"#fc2403"}
-        >
-          Alerts➡
-        </ButtonNavLink>
       </div>
 
       <div className={styles.inner_container}>
